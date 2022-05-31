@@ -34,6 +34,26 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "users" */ '../views/Users.vue'),
     },
+    {
+        path: '/pokemon-search',
+        name: 'pokemon-search',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(
+                /* webpackChunkName: "pokemon-search" */ '../views/SearchPokemon.vue'
+            ),
+    },
+    {
+        path: '/pokemon/:id',
+        name: 'pokemon-id',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "pokemon-id" */ '../views/Pokemon.vue'),
+    },
 ]
 
 const router = createRouter({
