@@ -22,22 +22,8 @@ import useUsers from '@/composables/useUsers'
 export default {
     name: 'users',
     setup() {
-        const {
-            currentPage,
-            errorMessage,
-            isLoading,
-            nextPage,
-            prevPage,
-            users,
-        } = useUsers()
-
         return {
-            currentPage,
-            errorMessage,
-            isLoading,
-            nextPage,
-            prevPage,
-            users,
+            ...useUsers(),
         }
     },
 }
