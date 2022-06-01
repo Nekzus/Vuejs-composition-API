@@ -35,6 +35,7 @@ export default createStore({
             return state.todos.filter(todo => !todo.completed)
         },
         allTodos(state, getters, rootState) {
+
             return [...state.todos]
         },
         completedTodos(state, getters, rootState) {
