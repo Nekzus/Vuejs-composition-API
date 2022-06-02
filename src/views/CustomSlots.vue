@@ -5,7 +5,6 @@
         v-if="isOpen"
         @on:close="closeModal"
         title="hola mundo"
-        otherTitle="otro titulo"
     >
         <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
         <button>Salir</button>
