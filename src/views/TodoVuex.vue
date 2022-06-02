@@ -3,32 +3,44 @@
     <!--<h4Pendientes: {{ $store.state.todos.filter((t) => !t.completed).length }}</h4>-->
     <h4>Pendientes: {{ pending.length }}</h4>
     <hr />
-    <button class="active">Todos</button>
-    <button>Pendientes</button>
-    <button>Completados</button>
+    <button
+        :class="{ active: currentTab === 'all' }"
+        @click="currentTab = 'all'"
+    >
+        Todos
+    </button>
+    <button
+        :class="{ active: currentTab === 'pending' }"
+        @click="currentTab = 'pending'"
+    >
+        Pendientes
+    </button>
+    <button
+        :class="{ active: currentTab === 'completed' }"
+        @click="currentTab = 'completed'"
+    >
+        Completados
+    </button>
     <div>
         <ul>
             <li
-                v-for="todo in all"
-                :key="todo.id"
-                :class="{ completed: todo.completed }"
+                v-for="{ id, completed, text } in getTodosByTab"
+                :key="id"
+                :class="{ completed: completed }"
+                @dblclick="toogleTodo(id)"
             >
-                {{ todo.text }}
+                {{ text }}
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-    import { computed } from 'vue'
-    import { useStore } from 'vuex'
+    import useTodos from '@/composables/useTodos'
     export default {
         setup() {
-            const store = useStore()
             return {
-                pending: computed(() => store.getters['pendingTodos']),
-                all: computed(() => store.getters['allTodos']),
-                completed: computed(() => store.getters['completedTodos']),
+                ...useTodos(),
             }
         },
     }
