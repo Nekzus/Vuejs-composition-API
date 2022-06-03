@@ -5,9 +5,12 @@ const useTodos = () => {
     const store = useStore()
 
     const currentTab = ref('all')
+    const isOpen = ref(false)
+    const newTodoText = ref('')
 
     return {
         currentTab,
+        newTodoText,
 
         all: computed(() => store.getters['allTodos']),
         completed: computed(() => store.getters['completedTodos']),
@@ -18,6 +21,10 @@ const useTodos = () => {
         ),
         //** Methods */
         toogleTodo: (id) => store.commit('toggleTodo', id),
+        createTodo: (text) => store.commit('createTodo', text),
+        isOpen,
+        openModal: () => (isOpen.value = true),
+        closeModal: () => (isOpen.value = false),
     }
 }
 
